@@ -1,0 +1,16 @@
+{
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "vector": "cpp",
+        "ostream": "cpp",
+        "xstring": "cpp",
+        "locale": "cpp",
+        "string": "cpp",
+        "xfacet": "cpp",
+        "xlocale": "cpp",
+        "xlocbuf": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xlocnum": "cpp"
+    }
+}
