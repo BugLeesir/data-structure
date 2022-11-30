@@ -4,7 +4,7 @@
 #define OK 1
 using namespace std;
 typedef int Status;
-typedef struct{//创建数字栈
+typedef struct{//建立栈
     int *base;
     int *top;
     int stacksize;
