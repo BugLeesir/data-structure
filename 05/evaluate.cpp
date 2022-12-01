@@ -74,8 +74,8 @@ void InitExpTree(BiTree<string>& T) {
       a = nullptr;
       b = nullptr;
       CreateExpTree(T, a, b, temp_str);
-      temp_str="";
-    } else
+      temp_str = "";
+    } else {
       switch (Precede(GetTop(optr), *it)) {
         case '<':
           Push(optr, *it);
@@ -87,7 +87,7 @@ void InitExpTree(BiTree<string>& T) {
           Pop(expt, a);
           temp_str = theta;
           CreateExpTree(T, a, b, temp_str);
-          temp_str="";
+          temp_str = "";
           Push(expt, T);
           break;
         case '=':
@@ -98,6 +98,7 @@ void InitExpTree(BiTree<string>& T) {
           exit(ERROR);
           break;
       }
+    }
   }
 }
 

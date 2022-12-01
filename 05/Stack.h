@@ -9,7 +9,6 @@ using Stack = StackNode <T> *;
 template<typename T>
 void InitStack(Stack<T> &S){
     S=nullptr;
-    return ;
 }
 
 template<typename T>
@@ -18,7 +17,6 @@ void Push(Stack<T> &S,T e){
     p->data=e;
     p->next=S;
     S=p;
-    return;
 }
 
 template <typename T>
@@ -28,7 +26,6 @@ void Pop(Stack<T>S,T &e){
     Stack<T> p=S;
     S=S->next;
     delete p;
-    return;
 }
 
 template<typename T>
