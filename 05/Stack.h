@@ -20,7 +20,7 @@ void Push(Stack<T> &S,T e){
 }
 
 template <typename T>
-void Pop(Stack<T>S,T &e){
+void Pop(Stack<T>&S,T &e){
     if(S==nullptr)return ;
     e=S->data;
     Stack<T> p=S;

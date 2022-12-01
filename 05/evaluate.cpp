@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iterator>
 #include <string>
-
+#include<cstdlib>
 #include "BiTree.h"
 
 #define ERROR 0
@@ -74,6 +74,7 @@ void InitExpTree(BiTree<string>& T) {
       a = nullptr;
       b = nullptr;
       CreateExpTree(T, a, b, temp_str);
+      Push(expt,T);
       temp_str = "";
     } else {
       switch (Precede(GetTop(optr), *it)) {
@@ -83,6 +84,8 @@ void InitExpTree(BiTree<string>& T) {
           break;
         case '>':
           Pop(optr, theta);
+          a=new BiNode<string>;
+          b=new BiNode<string>;
           Pop(expt, b);
           Pop(expt, a);
           temp_str = theta;
@@ -141,5 +144,6 @@ int main() {
   BiTree<string> T;
   InitExpTree(T);
   cout << EvaluateExpTree(T) << endl;
+  system("pause");
   return 0;
 }
