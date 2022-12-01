@@ -1,4 +1,4 @@
-template <typename T>
+template <typename T>//用模板创建泛型栈
 struct StackNode{
     T data;
     StackNode<T> *next;

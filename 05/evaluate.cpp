@@ -53,7 +53,7 @@ char Precede(char optr, char ch) {  //判断栈顶运算符与字符串中运算符的优先级
 }
 
 void InitExpTree(BiTree<string>& T) {
-  Stack<BiTree<string>> expt;
+  Stack<BiTree<string>> expt;//创建存放树节点的栈
   Stack<char> optr;
   string expression;
   string temp_str;
@@ -65,7 +65,7 @@ void InitExpTree(BiTree<string>& T) {
   Push(optr, '#');
   cin >> expression;
   auto it = expression.begin();
-  while ((*it) != '#' || GetTop(optr) != '#') {
+  while ((*it) != '#' || GetTop(optr) != '#') {//字符串指针和栈顶都不空
     if (!In(*it)) {
       while (!In(*it)) {
         temp_str += *it;
@@ -89,7 +89,7 @@ void InitExpTree(BiTree<string>& T) {
           Pop(expt, b);
           Pop(expt, a);
           temp_str = theta;
-          CreateExpTree(T, a, b, temp_str);
+          CreateExpTree(T, a, b, temp_str);//将栈中两节点弹出并合并在树上
           temp_str = "";
           Push(expt, T);
           break;
@@ -105,7 +105,7 @@ void InitExpTree(BiTree<string>& T) {
   }
 }
 
-float GetValue(string data, float a, float b) {
+float GetValue(string data, float a, float b) {//得到树中的计算结果
   char option = *data.begin();
   switch (option) {
     case '+':
@@ -128,13 +128,13 @@ float GetValue(string data, float a, float b) {
   }
 }
 
-float EvaluateExpTree(BiTree<string> T) {
+float EvaluateExpTree(BiTree<string> T) {//计算二叉树
   float lvalue = 0;
   float rvalue = 0;
   if (T->lchild == nullptr && T->rchild == nullptr)
     return stof(T->data);
   else {
-    lvalue = EvaluateExpTree(T->lchild);
+    lvalue = EvaluateExpTree(T->lchild);//递归将左右子树转化为浮点数
     rvalue = EvaluateExpTree(T->rchild);
     return GetValue(T->data, lvalue, rvalue);
   }
