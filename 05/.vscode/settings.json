@@ -1,29 +1,14 @@
 {
+    "C_Cpp.errorSquiggles": "Disabled",
     "files.associations": {
-        "utility": "cpp",
-        "deque": "cpp",
-        "string": "cpp",
-        "unordered_map": "cpp",
         "vector": "cpp",
-        "exception": "cpp",
-        "memory": "cpp",
-        "memory_resource": "cpp",
-        "optional": "cpp",
-        "string_view": "cpp",
-        "fstream": "cpp",
-        "initializer_list": "cpp",
-        "istream": "cpp",
-        "new": "cpp",
+        "iostream": "cpp",
         "ostream": "cpp",
-        "sstream": "cpp",
-        "stdexcept": "cpp",
-        "streambuf": "cpp",
-        "system_error": "cpp",
-        "tuple": "cpp",
-        "type_traits": "cpp",
-        "typeinfo": "cpp",
-        "atomic": "cpp",
-        "cwchar": "cpp",
-        "iosfwd": "cpp"
+        "initializer_list": "cpp",
+        "iterator": "cpp",
+        "memory": "cpp",
+        "xmemory": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp"
     }
 }

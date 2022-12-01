@@ -3,7 +3,6 @@
 #include <string>
 
 #include "BiTree.h"
-#include "Stack.h"
 
 #define ERROR 0
 bool In(char ch) {  //判断传入的是否是运算符
@@ -57,6 +56,7 @@ void InitExpTree(BiTree<string>& T) {
   Stack<BiTree<string>> expt;
   Stack<char> optr;
   string expression;
+  string temp_str;
   BiTree<string> a = nullptr;
   BiTree<string> b = nullptr;
   char theta, kh;
@@ -66,7 +66,6 @@ void InitExpTree(BiTree<string>& T) {
   cin >> expression;
   auto it = expression.begin();
   while ((*it) != '#' || GetTop(optr) != '#') {
-    string temp_str;
     if (!In(*it)) {
       while (!In(*it)) {
         temp_str += *it;
@@ -75,6 +74,7 @@ void InitExpTree(BiTree<string>& T) {
       a = nullptr;
       b = nullptr;
       CreateExpTree(T, a, b, temp_str);
+      temp_str="";
     } else
       switch (Precede(GetTop(optr), *it)) {
         case '<':
@@ -87,6 +87,7 @@ void InitExpTree(BiTree<string>& T) {
           Pop(expt, a);
           temp_str = theta;
           CreateExpTree(T, a, b, temp_str);
+          temp_str="";
           Push(expt, T);
           break;
         case '=':

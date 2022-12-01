@@ -25,7 +25,7 @@ template <typename T>
 void Pop(Stack<T>S,T &e){
     if(S==nullptr)return ;
     e=S->data;
-    Stack p=S;
+    Stack<T> p=S;
     S=S->next;
     delete p;
     return;
@@ -33,6 +33,6 @@ void Pop(Stack<T>S,T &e){
 
 template<typename T>
 T GetTop(Stack<T> S){
-    if(S==nullptr)return 0;
+    if(S==nullptr)return '0';
     else return S->data;
 }
