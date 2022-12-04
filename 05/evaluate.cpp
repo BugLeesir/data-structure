@@ -1,10 +1,65 @@
 #include <iostream>
 #include <iterator>
 #include <string>
-
-#include "BiTree.h"
-
 #define ERROR 0
+using namespace std;
+template <typename T>
+struct StackNode{
+    T data;
+    StackNode<T> *next;
+};
+template <typename T>
+using Stack = StackNode <T> *;
+
+template <typename T>
+struct BiNode {
+  T data;
+  BiNode<T> *rchild, *lchild;
+  int ltag,rtag;
+};
+template <typename T>
+using BiTree = BiNode<T> *;
+template <typename T>
+using BiThrNode=BiNode<T>;
+template <typename T>
+using BiThrTree = BiThrNode<T> *;
+template<typename T>
+void InitStack(Stack<T> &S){
+    S=nullptr;
+}
+
+template<typename T>
+void Push(Stack<T> &S,T e){
+    StackNode<T> *p=new StackNode<T> ;
+    p->data=e;
+    p->next=S;
+    S=p;
+}
+
+template <typename T>
+void Pop(Stack<T>S,T &e){
+    if(S==nullptr)return ;
+    e=S->data;
+    Stack<T> p=S;
+    S=S->next;
+    delete p;
+}
+
+char GetTop(Stack<char> S){
+    if(S==nullptr)return '0';
+    else{
+        return S->data;
+    }
+}
+
+template<typename V>
+void CreateExpTree(BiTree<V> &T,BiTree<V> lchild,BiTree<V> rchild,V data){
+  T= new BiNode<V>;
+  T->data=data;
+  T->lchild=lchild;
+  T->rchild=rchild;
+}
+
 bool In(char ch) {  //判断传入的是否是运算符
   char operators[7] = {'+', '-', '*', '/', '(', ')', '#'};
   for (int i = 0; i < 7; ++i) {
@@ -52,11 +107,46 @@ char Precede(char optr, char ch) {  //判断栈顶运算符与字符串中运算符的优先级
   }
 }
 
+float GetValue(string data, float a, float b) {
+  char option = *data.begin();
+  switch (option) {
+    case '+':
+      return a + b;
+      break;
+    case '-':
+      return a - b;
+      break;
+    case '*':
+      return a * b;
+      break;
+    case '/':
+      if (!b) exit(ERROR);
+      return a / b;
+      break;
+    default:
+      cout << "运算符错误" << endl;
+      exit(ERROR);
+      break;
+  }
+}
+
+float EvaluateExpTree(BiTree<string> T) {
+  float lvalue = 0;
+  float rvalue = 0;
+  if (T->lchild == nullptr && T->rchild == nullptr)
+    return stof(T->data);
+  else {
+    lvalue = EvaluateExpTree(T->lchild);
+    rvalue = EvaluateExpTree(T->rchild);
+    return GetValue(T->data, lvalue, rvalue);
+  }
+}
+
 void InitExpTree(BiTree<string>& T) {
-  Stack<BiTree<string>> expt;
-  Stack<char> optr;
   string expression;
   string temp_str;
+  Stack<BiTree<string>> expt;
+  Stack<char> optr;
   BiTree<string> a = nullptr;
   BiTree<string> b = nullptr;
   char theta, kh;
@@ -65,7 +155,7 @@ void InitExpTree(BiTree<string>& T) {
   Push(optr, '#');
   cin >> expression;
   auto it = expression.begin();
-  while ((*it) != '#' || GetTop(optr) != '#') {
+  while (((*it) != '#' )|| (GetTop(optr) != '#')) {
     if (!In(*it)) {
       while (!In(*it)) {
         temp_str += *it;
@@ -99,41 +189,6 @@ void InitExpTree(BiTree<string>& T) {
           break;
       }
     }
-  }
-}
-
-float GetValue(string data, float a, float b) {
-  char option = *data.begin();
-  switch (option) {
-    case '+':
-      return a + b;
-      break;
-    case '-':
-      return a - b;
-      break;
-    case '*':
-      return a * b;
-      break;
-    case '/':
-      if (!b) exit(ERROR);
-      return a / b;
-      break;
-    default:
-      cout << "运算符错误" << endl;
-      exit(ERROR);
-      break;
-  }
-}
-
-float EvaluateExpTree(BiTree<string> T) {
-  float lvalue = 0;
-  float rvalue = 0;
-  if (T->lchild == nullptr && T->rchild == nullptr)
-    return stof(T->data);
-  else {
-    lvalue = EvaluateExpTree(T->lchild);
-    rvalue = EvaluateExpTree(T->rchild);
-    return GetValue(T->data, lvalue, rvalue);
   }
 }
 

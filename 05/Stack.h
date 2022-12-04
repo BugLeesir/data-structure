@@ -28,8 +28,9 @@ void Pop(Stack<T>S,T &e){
     delete p;
 }
 
-template<typename T>
-T GetTop(Stack<T> S){
+char GetTop(Stack<char> S){
     if(S==nullptr)return '0';
-    else return S->data;
+    else{
+        return S->data;
+    }
 }
