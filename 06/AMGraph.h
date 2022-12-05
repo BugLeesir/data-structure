@@ -1,6 +1,9 @@
+#ifndef AMGRAPH
+#define AMGRAPH
 #define MVNum 100
 #define infinite 32767
-
+#include<iostream>
+#endif
 template <typename V, typename A>
 struct AMGraph {
   V vexs[MVNum];         //顶点表
@@ -34,4 +37,15 @@ void CreateUDN(AMGraph<V, A>& G) {
     G.arcs[j][i] = G.arcs[i][j];
   }
   return;
+}
+
+template <typename V,typename A>
+void DFS(AMGraph<V,A> G,int v){//深度优先遍历
+  bool visited[G.vexnum]={false};
+  cout<<v;
+  visited[v]=true;
+  for(int w=0;w<G.vexnum;++w){
+    if((G.arcnum[v][w]!=0)&&(!visited[w]))
+    DFS(G,w);
+  }
 }
