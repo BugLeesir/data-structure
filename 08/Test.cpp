@@ -9,10 +9,10 @@ using namespace std;
 #endif
 int main() {
   SqTable sq;
-  clock_t begin, end;//记录程序运行时间
+  clock_t begin, end;  // 记录程序运行时间
   CreatSqTable(sq);
   RandomTable(sq);
-    PrintSqTable(sq);
+  PrintSqTable(sq);
   begin = clock();
   cout << "select排序前" << begin << "ms" << endl;
   select_sort(sq);
