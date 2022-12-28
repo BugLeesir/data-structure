@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "compile",
+      "command": "g++",
+      "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
+/*
+  如果需要是c语言也就是gcc将下面的command项由g++改为gcc
+如果是多文件编译（即函数声明和函数定义分开，不懂的别乱改），需要将args列表中的"${file}"项修改为"${workspaceFolder}/*.cpp" ，多文件推荐用cmake
+*/

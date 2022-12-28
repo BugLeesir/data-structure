@@ -3,7 +3,7 @@
 // #include "Stack.h"
 using namespace std;
 
-template <typename T>
+template <typename T>   //使用模板写泛型树
 struct BiNode {
   T data;
   BiNode<T> *rchild, *lchild;
@@ -14,7 +14,7 @@ using BiTree = BiNode<T> *;
 template <typename T>
 using BiThrNode=BiNode<T>;
 template <typename T>
-using BiThrTree = BiThrNode<T> *;
+using BiThrTree = BiThrNode<T> *;//使用using给树取别名
 // template <typename V>
 // void PreOrderTraverse(BiTree<V> T) {  //先序遍历算法
 //   if (T == nullptr)
